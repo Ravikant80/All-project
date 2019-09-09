@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 //Admin Area
 Route::get('admin-dashboard','Admin\AdminController@index');
 Route::get('admin','Admin\LoginController@showLoginForm')->name('admin.login');
@@ -35,3 +36,6 @@ Route::get('changeStatus', 'UserController@changeStatus');
 Route::match(['get', 'post'], 'ajax-image-upload', 'ImageController@ajaxImage');
 Route::delete('ajax-remove-image/{filename}', 'ImageController@deleteImage');
 //Route::get('hello', ['as' =>'Hello' ,'uses'=>'ImageController@hello']);
+
+Route::get('validation','ValidationController@validation');
+Route::post('validation','ValidationController@validationPost');

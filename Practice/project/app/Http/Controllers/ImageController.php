@@ -19,28 +19,32 @@ class ImageController extends Controller
                 [
                     'file.image' => 'The file must be an image (jpeg, png, bmp, gif, or svg)'
                 ]);
-            if ($validator->fails())
-                return array(
-                    'fail' => true,
-                    'errors' => $validator->errors()
-                );
-            $extension = $request->file('file')->getClientOriginalExtension();
-            $dir = 'uploads/';
-            $filename = uniqid() . '_' . time() . '.' . $extension;
-            $request->file('file')->move($dir, $filename);
-            return $filename;
-        }
-    }
 
-    public function deleteImage($filename)
-    {
-        File::delete('uploads/' . $filename);
-    }
+                if ($validator->fails())
+                    return array(
+                        'fail' => true,
+                        'errors' => $validator->errors()
+                    );
 
-    public function hello()
-    {
-        return 'hi Raushan';
-    }
+                $extension = $request->file('file')->getClientOriginalExtension();
+                $dir = 'uploads/';
+                $filename = uniqid() . '_' . time() . '.' . $extension;
+                $request->file('file')->move($dir, $filename);
+                return $filename;
+                    }
+                }
+
+
+                public function deleteImage($filename)
+                {
+                    File::delete('uploads/' . $filename);
+                }
+                
+
+                public function hello()
+                {
+                    return 'hi Raushan';
+                }
 
 
 }
