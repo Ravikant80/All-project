@@ -52,6 +52,11 @@ return [
             'provider' => 'admins',
         ],
 
+         'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
+        ],
+
     ],
 
     /*
@@ -80,6 +85,11 @@ return [
           'admins' => [
             'driver' => 'eloquent',
             'model' => App\Admin::class,
+        ],
+
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Patient::class,
         ],
 
 
@@ -112,6 +122,12 @@ return [
         ],
 
         'admins' => [
+            'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'patients' => [
             'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,

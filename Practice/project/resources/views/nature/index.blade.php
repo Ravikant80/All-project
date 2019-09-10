@@ -21,6 +21,12 @@ https://templatemo.com/tm-398-nature
         
         <link rel="stylesheet" href="{{asset('assets/nature/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('assets/nature/css/templatemo_main.css')}}">
+        <style type="text/css">
+         .li12{
+        margin-left: 824px;
+         }   
+
+        </style>
     </head>
     <body>
         <div id="main-wrapper">
@@ -28,10 +34,19 @@ https://templatemo.com/tm-398-nature
                 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a rel="nofollow" href="http://browsehappy.com">upgrade your browser</a> or <a rel="nofollow" href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
             <![endif]-->
 
+             <div>
+            <ul>
+                <center>
+            <li class="li12"><a href="{{route('register')}}"> <font size="6" color=" #fff">Register</font></a></li>
+            <li class="li12"><a href="{{route('login')}}"><font size="6" color="#fff" >Login</font></a></li>
+                </center>
+            </ul>
+            </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affix text-center" style="z-index: 1;">
                 <h1 class="templatemo-site-title">
-                        <a href="#">Gagan</a>
-                        <img src="images/btn-menu.png" alt="main menu" id="m-btn" class="pull-right visible-xs visible-sm" >
+                    <a href="#">Gagan</a>
+                    <img src="{{asset('assets/nature/images/btn-menu.png')}}" alt="main menu" id="m-btn" class="pull-right visible-xs visible-sm" >
+                
                 </h1>
 
                 <ul id="responsive" style="display:none" class="hidden-lg hidden-md"></ul><!-- /.responsive -->
@@ -47,6 +62,8 @@ https://templatemo.com/tm-398-nature
                     <li><a rel="nofollow" target="_parent" href="https://fb.com/templatemo" class="external">FB Page</a></li>
                 </ul>
             </div>
+          
+           
         
              <div class="image-section">
                 <div class="image-container">

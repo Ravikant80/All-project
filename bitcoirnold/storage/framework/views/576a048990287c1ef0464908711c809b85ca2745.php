@@ -1,0 +1,415 @@
+<?php $__env->startSection('style'); ?>
+
+
+<?php $__env->stopSection(); ?>
+<?php
+$page = file_get_contents('https://bitpay.com/api/rates');
+$blockchain = file_get_contents('https://blockchain.info/ticker');
+
+$my_array = json_decode($page, true);
+$btc_array = json_decode($blockchain, true);
+//print_r($btc_array);
+$usd_buy = $btc_array['USD']['buy'];
+$usd_sell = $btc_array['USD']['sell'];
+$bit_coin = $my_array[0]["rate"];
+$bit_code = $my_array[0]["code"];
+$usd_code = $my_array[2]["code"];
+$usd_rate = $my_array[2]["rate"];
+?>
+<?php $__env->startSection('content'); ?>
+
+<style type="text/css">
+  .featured-outlets__outlet {
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    padding: 10px;
+    margin: 5px;
+    width: 180px;
+    height: auto;
+    min-height: 90px;
+    color: #888;
+    -webkit-transition: color .15s ease-in-out,border-color .15s ease-in-out;
+    transition: color .15s ease-in-out,border-color .15s ease-in-out;
+    box-shadow: 0 2px 1px 0 rgba(0,0,0,.05), 0 0 2px 0 rgba(0,0,0,.22);
+    text-align: center;
+    margin-left: 38%;
+    margin-bottom: 7%;
+}
+
+.featured-outlets__logo {
+    max-width: 100%;
+    max-height: 40px;
+}
+
+.featured-outlets__name {
+    line-height: 18px;
+    margin-top: 15px;
+}
+
+.btn-group{
+  display: none;
+}
+
+.sw-theme-arrows > ul.step-anchor > li {
+    width: 130px;
+    padding-right: 61px;
+}
+.content-wrapper {
+    padding: 2.2rem;
+    margin-left: 18%;
+}
+
+
+
+
+
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+}
+
+.container {
+  font-family: 'Lato', sans-serif;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  display: table-cell;
+  height: 100px;
+  vertical-align: middle;
+}
+
+.nav {
+  margin-top: 40px;
+}
+
+.pull-right {
+  float: right;
+}
+
+a, a:active {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #999;
+}
+
+/* Breadcrups CSS */
+
+.arrow-steps .step {
+  font-size: 18px;
+  text-align: center;
+  color: #666;
+  cursor: default;
+    margin: 0 2px;
+    padding: 10px 10px 10px 30px;
+    min-width: 205px;
+  float: left;
+  position: relative;
+  background-color: #d9e3f7;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
+  transition: background-color 0.2s ease;
+}
+
+.arrow-steps .step:after, .arrow-steps .step:before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: -17px;
+    width: 0;
+    height: 0;
+    border-top: 23px solid transparent;
+    border-bottom: 23px solid transparent;
+    border-left: 17px solid #d9e3f7;
+    z-index: 2;
+    transition: border-color 0.2s ease;
+}
+
+.arrow-steps .step:before {
+  right: auto;
+  left: 0;
+  border-left: 17px solid #fff; 
+  z-index: 0;
+}
+
+.arrow-steps .step:first-child:before {
+  border: none;
+}
+
+.arrow-steps .step:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.arrow-steps .step span {
+  position: relative;
+}
+
+.arrow-steps .step span:before {
+  opacity: 0;
+  content: "✔";
+  position: absolute;
+  top: -2px;
+  left: -20px;
+}
+
+.arrow-steps .step.done span:before {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease 0.5s;
+  -moz-transition: opacity 0.3s ease 0.5s;
+  -ms-transition: opacity 0.3s ease 0.5s;
+  transition: opacity 0.3s ease 0.5s;
+}
+
+.arrow-steps .step.current {
+  color: #fff;
+  background-color: #39a8df;
+}
+
+.arrow-steps .step.current:after {
+  border-left: 17px solid #39a8df;  
+}
+
+.content-wrapper {
+    padding: 2.2rem;
+    margin-left: 15%;
+}
+.sw-theme-arrows .step-content {
+  
+    background-color: #f4f5fa !important; 
+ 
+}
+.sw-theme-arrows {
+    border-radius: 5px;
+    border: none!important;
+}
+</style>
+
+<div class="container"> 
+  <div class="wrapper"> 
+    <div class="arrow-steps clearfix">
+        <div class="step "> <a href="<?php echo e(url('payment/dashboard')); ?>" style="color: #6d6262 !important;text-decoration: none !important;"><span> Method</span></a> </div>
+        <div class="step current"> <span> Amount</span> </div>
+        <div class="step"> <span>Payment</span> </div>
+    </div>
+  </div>
+</div>
+<div class="row" style="width:100%;" align="center">
+           
+            
+         
+                <div id="smartwizard">
+                    <ul style="display: none;">
+                        <li><a href="#step-2">Method</a></li>
+                        <li><a href="#step-3">Payment</a></li>
+                    </ul>
+
+                    <div>
+                        <div id="step-2" style="height:400px; width:100%;" class="">
+                            <div id="wallet">
+                    <div class="">
+                      <div class="ca-page-title ca-center-align">
+                            <h3 style="text-align: center;padding-top: 20px;">How would you like to Cash-In ?</h3>
+                          </div>
+                   <div class="card-content collapse show">
+                    <form type="GET" class="form-horizontal" id='depositForm' action="<?php echo e(url('payment/second-step')); ?>">
+                    
+                        <!-- <?php echo e(csrf_field()); ?> -->
+                    
+                    <fieldset>
+
+                        
+
+
+
+                        <div class="form-group">
+                          
+                        <!--   <div id="ember1570" class="ember-view featured-outlets__outlet"><div class="featured-outlets__content ">
+
+                              <div>
+                                <img class="featured-outlets__logo" src="<?php echo e(asset('assets/img/mtnmoney.jpg')); ?>">
+                              </div>
+
+                              <div class="featured-outlets__name">
+                                MTN Mobile Cash In
+                                  <span class="featured-outlets__estimate">
+                                        <strong>Instant</strong> after payment
+                                  </span>
+                              </div>
+                            </div>
+                            </div> -->
+                            <label class="col-md-12 control-label" for="textinput" style="text-align: center;  padding: 15px;"><i>below enter a phone number which has a MTN Mobile Money account</i></label>  
+                            <div class="col-md-6" style="margin:  0px auto;">
+                                <input name="phone" type="number" placeholder="" class="form-control input-md" value="<?php echo e(Auth::user()->phone); ?>">
+                                <?php if($errors->has("phone")): ?>
+                                    <span class="help-block text-danger"><?php echo e($errors->first('phone')); ?></span>  
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="text-align: center; display: -webkit-inline-box">
+                          <div class="col-md-2 col-md-offset-6" style="margin-right: -40px; margin-left: 180px;">
+                            <a href="<?php echo e(url('payment/dashboard')); ?>" class="btn btn-primery" style="border: 1px solid;">
+                             Back</a>
+                          </div>
+                          <div class="col-md-4">
+                            <input type="submit" value="Click to start Payment" class="btn btn-info" />
+                          </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+
+<!--
+<div class="card pull-up" style="background-color: #1B65D3 !important;">
+    <div class="card-content">
+        <div class="card-body">
+            <h1 style="color: white;margin-left: 20px;font-family: inherit;text-transform: capitalize;padding: 50px;text-align: center;font-size: 50px;">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                <img src="<?php echo e(asset('assets/img/mtnmoney.jpg')); ?>" height="100px" width="300px" alt="Mobile money Payment"/>
+                   Payment</h1>
+                   </div>
+    </div>
+</div>
+
+
+
+
+<div class="card pull-up">
+    <div class="card-content">
+        <div class="card-body">
+            <div class="col-md-12">
+                <form type="GET" class="form-horizontal" id='depositForm' action="<?php echo e(url('payment/second-step')); ?>">
+                    
+                    
+                    
+                    <fieldset>
+
+                        
+
+
+
+                        <div class="form-group">
+                            <label class="col-md-12 control-label" for="textinput" style="text-align: center;"><i>below enter a phone number which has a MTN Mobile Money account</i></label>  
+                            <div class="col-md-6" style="margin:  0px auto;">
+                                <input name="phone" type="number" placeholder="" class="form-control input-md" value="<?php echo e(Auth::user()->phone); ?>">
+                                <?php if($errors->has("phone")): ?>
+                                    <span class="help-block text-danger"><?php echo e($errors->first('phone')); ?></span>  
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="text-align: center;">
+                            <input type="submit" value="Click to start Payment" class="btn btn-info" />
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+
+<script type="text/javascript">
+
+    function sendRequest(link,formId,thisone ) {
+        $(".help-block").html(""); 
+        
+        var check = true;
+        
+        if($("#amount").val() == ""){
+            $("#amount_help").text("The amount field is required.");
+            check = false; 
+        }
+        
+        if($("#phone").val() == ""){
+            $("#phone_help").text("The phone field is required.");
+            check= false;
+        }
+        
+        
+        thisone.disabled = true;
+        var bftext = $(thisone).text();
+        $(thisone).text("wait...");
+       
+        var form = new FormData();
+            form.append("amount", $("#amount").val());
+            form.append("phone", $("#phone").val());
+        
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": link,
+            "method": "POST",
+            "headers": {
+                "Cache-Control": "no-cache",
+                "Postman-Token": "5486823d-90c3-4c79-94b7-003c609ee2ff",
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            "processData": false,
+            "contentType": false,
+            "mimeType": "multipart/form-data",
+            "data": form,
+            "error":function(e){
+                document.write(e.responseText);
+            }
+        }
+
+        if(check){
+
+            $.ajax(settings).done(function (response1) {
+            thisone.disabled = false;
+            $(thisone).text(bftext);
+            response = JSON.parse(response1);
+            if(response.success == false){
+               for(key in response.error){
+                 $("#"+key+"_help").text(response.error[key][0]);
+              }
+           }else{
+               if(response.status == 'success'){
+                   var msg = response.message +"<br>"+
+                             "amount : "+response.amount+"<br>"+
+                             "phone  :"+response.phoneNumber+"<br>"+
+                             "tranaction id :"+response.transactionId+"<br>"+
+                             "transaction date :"+response.transactionDate+"<br>";
+                   bootbox.alert(msg);
+                   
+                   setTimeout(function(){ location.assign(response.redirect); }, 3000);
+                }else{
+                   bootbox.alert(response.message);
+               }
+            }
+        });
+        
+            bootbox.alert("Hurry!! An approval link is sent to your phone please approve to complete the payment.");
+       }else{
+           thisone.disabled = false;
+           $(thisone).text(bftext);
+       } 
+    }
+
+</script>
+
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('layouts.user-frontend.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

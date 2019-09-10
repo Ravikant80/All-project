@@ -39,3 +39,8 @@ Route::delete('ajax-remove-image/{filename}', 'ImageController@deleteImage');
 
 Route::get('validation','ValidationController@validation');
 Route::post('validation','ValidationController@validationPost');
+
+
+Route::resource('ajax-crud', 'AjaxCrudController');
+Route::post('ajax-crud/update', 'AjaxCrudController@update')->name('ajax-crud.update');
+Route::get('ajax-crud/destroy/{id}', 'AjaxCrudController@destroy');

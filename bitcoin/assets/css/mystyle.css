@@ -1,0 +1,43 @@
+.defaultMenu{
+	display:none;
+}
+body {
+    background-color: #ddd !important;
+}
+.md-input__input {
+    border: none !important;
+    border-bottom: 2px solid #0187d0 !important;
+    outline: none !important;
+    width: 100% !important;
+    padding: 4px 0 !important;
+    -moz-appearance: textfield !important;
+}
+.input-group {
+	display: inline !important;
+}
+.myform{
+	margin: 0% 8%;
+}
+.signup-form__title{
+	font-size: 18px;margin-bottom: 20px;text-transform: uppercase;
+}
+label {
+    font-weight: 400 !important;
+}
+.formlogo{
+	max-width: 150px;
+}
+
+.btn-group-lg>.btn, .btn-lg, .btn {
+	border-radius:0px;
+	padding: 5px 16px !important;
+}
+
+.price-quoter>span{
+	color: white;
+    font-size: 12px;
+	font-weight: 450;
+}
+.price-quoter{
+	margin-top: 3px;
+}
